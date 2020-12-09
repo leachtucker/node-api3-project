@@ -1,6 +1,15 @@
 /* IMPORTS */
-const server = require('./server');
+const express = require('express');
+const cors = require('cors');
+
 const userRouter = require('./users/userRouter');
+
+/* SETUP & CONFIG*/
+const server = express();
+server.use(cors());
+server.use(express.json());
+server.use(logger);
+
 
 /* ROUTERS */
 server.use('/api/users', userRouter)
@@ -9,3 +18,9 @@ server.use('/api/users', userRouter)
 server.listen(5000, () => {
     console.log('Listening on port 5000')
 })
+
+// MIDDLEWARE
+function logger(req, res, next) {
+    console.log(`${req.method} request on ${req.url} at ${new Date().toUTCString()}`);
+    next();
+};
