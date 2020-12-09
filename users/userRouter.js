@@ -22,7 +22,18 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-  // do your magic!
+  const { id } = req.params;
+  db.getById(id)
+    .then(result => {
+      if (!result || result.length <= 0) {
+        // If we cannot find a user with that ID, exit from the request.
+        return res.status(404).json({ errorMessage: 'Could not find specified user' })
+      }
+      res.status(200).json(result);
+    })
+    .catch(() => {
+      res.status(500).json({ errorMessage: 'There has been an error retrieving users from the database.' })
+    });
 });
 
 router.get('/:id/posts', (req, res) => {
