@@ -2,6 +2,7 @@
 if (process.env.NODE_ENV !== "production") {
     require("dotenv").config();
 }
+
 const express = require('express');
 const cors = require('cors');
 
@@ -25,7 +26,8 @@ server.use('/api/posts', postRouter);
 
 // Prop up server on port 5000
 server.listen(port, () => {
-    console.log(`Listening on port ${port}`)
+    console.log(`Listening on port ${port}`);
+    console.log(`Enviroment variables ${process.env}`);
 })
 
 // MIDDLEWARE
