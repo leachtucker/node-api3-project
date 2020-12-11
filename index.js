@@ -27,7 +27,7 @@ server.use('/api/posts', postRouter);
 // Prop up server on port 5000
 server.listen(port, () => {
     console.log(`Listening on port ${port}`);
-    console.log(`Enviroment variables ${process.env}`);
+    console.log(`Environment variables ${process.env}`);
 })
 
 // MIDDLEWARE
